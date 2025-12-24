@@ -1,6 +1,18 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap");
 @import "tailwindcss";
+@plugin "tailwind-scrollbar";
 
 @theme {
   --color-background: #0c0f15;
   --color-primary: #ff98d9;
+  --color-muted: #d6d6d6;
+  --font-space: "Space Grotesk", sans-serif;
+}
+
+html {
+  scrollbar-width: none;
+}
+
+html::-webkit-scrollbar {
+  display: none;
 }
