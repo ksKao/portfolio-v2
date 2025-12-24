@@ -1,0 +1,45 @@
+---
+import type { DirectusContentData } from "@lib/directus";
+
+interface Props {
+  data: NonNullable<DirectusContentData["translations"]>[number];
+}
+
+const { data } = Astro.props;
+
+if (typeof data === "string") {
+  throw new Error(`Invalid string type for content translations`);
+}
+---
+
+<nav>
+  <ul
+    class="bg-background sticky top-0 flex w-full items-center justify-center gap-6 py-6 text-xs md:gap-10 md:text-base"
+  >
+    <li id="nav-link-home">
+      <a href="#home">
+        {data.navbar_home_text}
+      </a>
+    </li>
+    <li id="nav-link-skills">
+      <a href="#skills">
+        {data.navbar_skills_text}
+      </a>
+    </li>
+    <li id="nav-link-experience">
+      <a href="#experience">
+        {data.navbar_experience_text}
+      </a>
+    </li>
+    <li id="nav-link-projects">
+      <a href="#projects">
+        {data.navbar_projects_text}
+      </a>
+    </li>
+    <li id="nav-link-contacts">
+      <a href="#contacts">
+        {data.navbar_contacts_text}
+      </a>
+    </li>
+  </ul>
+</nav>

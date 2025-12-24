@@ -1,0 +1,33 @@
+---
+import Navbar from "@components/navbar.astro";
+import { getDirectusContentData } from "@lib/directus";
+import "../styles/global.css";
+
+interface Props {
+  locale: string;
+}
+const { locale } = Astro.props;
+
+const content = await getDirectusContentData(locale);
+
+if (!content.translations)
+  throw new Error(`Failed to get translation for locale ${locale}`);
+
+const name =
+  typeof content.translations[0] === "string"
+    ? content.translations[0]
+    : content.translations[0].name;
+---
+
+<html lang="en" class="scroll-smooth motion-reduce:scroll-auto">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{name}</title>
+  </head>
+  <body class="bg-background text-white">
+    <Navbar data={content.translations[0]} />
+  </body>
+</html>
