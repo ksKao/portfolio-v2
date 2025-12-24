@@ -1,5 +1,6 @@
-import { createDirectus, readSingleton, rest } from "@directus/sdk";
+import { createDirectus, readItems, readSingleton, rest } from "@directus/sdk";
 import type { Schema } from "./directus-schema";
+import { ensureObject } from "./utils";
 
 export const directus = createDirectus<Schema>(
   import.meta.env.PUBLIC_DIRECTUS_URL,
@@ -21,4 +22,40 @@ export async function getDirectusContentData(locale: string) {
   );
 }
 
-export type DirectusContentData = Awaited<ReturnType<typeof getDirectusContentData>>
+export type DirectusContentData = Awaited<
+  ReturnType<typeof getDirectusContentData>
+>;
+
+async function getDirectusSkills() {
+  return await directus.request(
+    readItems("skills", {
+      fields: ["*", { category: ["id"] }],
+    }),
+  );
+}
+
+export async function getDirectusSkillCategories(locale: string) {
+  const skills = await getDirectusSkills();
+
+  const categories = await directus.request(
+    readItems("skills_categories", {
+      fields: ["*", { translations: ["*"] }],
+      deep: {
+        translations: {
+          _limit: 1,
+          _filter: {
+            languages_code: locale,
+          },
+        },
+      },
+    }),
+  );
+
+  return categories.map((cat) => ({
+    ...cat,
+    skills: skills.filter((skill) => {
+      if (!skill.category) return false;
+      return ensureObject(skill.category).id === cat.id;
+    }),
+  }));
+}

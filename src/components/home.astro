@@ -1,16 +1,13 @@
 ---
 import type { DirectusContentData } from "@lib/directus";
 import PillButton from "./pill-button.astro";
+import { ensureObject } from "@lib/utils";
 
 interface Props {
   data: NonNullable<DirectusContentData["translations"]>[number];
 }
 
-const { data } = Astro.props;
-
-if (typeof data === "string") {
-  throw new Error(`Invalid string type for content translations`);
-}
+const data = ensureObject(Astro.props.data);
 
 // put this here so that tailwind recognizes the class name
 ("text-primary");
@@ -18,7 +15,7 @@ if (typeof data === "string") {
 
 <section
   id="home"
-  class="flex h-svh flex-col items-center justify-center overflow-visible py-16"
+  class="my-44 flex flex-col items-center justify-center overflow-visible md:my-96"
 >
   <h1
     class="font-space text-3xl font-bold md:w-2/3 md:self-start md:text-6xl"

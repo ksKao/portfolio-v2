@@ -1,0 +1,66 @@
+---
+import {
+  type DirectusContentData,
+  getDirectusSkillCategories,
+} from "@lib/directus";
+import { ensureObject } from "@lib/utils";
+import SkillPill from "./skill-pill.astro";
+
+interface Props {
+  data: NonNullable<DirectusContentData["translations"]>[number];
+  locale: string;
+}
+
+const data = ensureObject(Astro.props.data);
+
+const skillCategories = (
+  await getDirectusSkillCategories(Astro.props.locale)
+).map((cat) => {
+  if (!cat.translations)
+    throw new Error(
+      `Failed to get translation for skill categories for locale ${Astro.props.locale}`,
+    );
+
+  return {
+    ...cat,
+    ...ensureObject(cat.translations[0]),
+  };
+});
+---
+
+<section
+  id="skills"
+  class="my-44 flex flex-col justify-center gap-6 md:my-96 md:gap-20"
+>
+  <h2 class="font-space text-center text-4xl font-bold md:text-6xl">
+    {data.skills_header}
+  </h2>
+  <ul class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
+    {
+      skillCategories.map((category) => (
+        <li class="bg-card w-full rounded-md p-6">
+          <div class="bg-primary/10 flex aspect-square w-12 items-center justify-center rounded-md">
+            <span class="text-primary material-symbols-outlined">
+              {category.icon}
+            </span>
+          </div>
+          <div class="mt-8">
+            <h3 class="font-space text-2xl font-semibold">
+              {category.category_title}
+            </h3>
+            <ul class="mt-6 flex flex-wrap gap-2">
+              {category.skills.map((skill) => (
+                <li>
+                  <SkillPill
+                    name={skill.name}
+                    assetId={skill.icon.toString()}
+                  />
+                </li>
+              ))}
+            </ul>
+          </div>
+        </li>
+      ))
+    }
+  </ul>
+</section>

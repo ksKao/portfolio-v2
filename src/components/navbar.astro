@@ -1,15 +1,12 @@
 ---
 import type { DirectusContentData } from "@lib/directus";
+import { ensureObject } from "@lib/utils";
 
 interface Props {
   data: NonNullable<DirectusContentData["translations"]>[number];
 }
 
-const { data } = Astro.props;
-
-if (typeof data === "string") {
-  throw new Error(`Invalid string type for content translations`);
-}
+const data = ensureObject(Astro.props.data);
 ---
 
 <nav class="fixed top-0 left-0 w-full py-6">

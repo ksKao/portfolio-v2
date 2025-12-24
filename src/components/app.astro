@@ -3,6 +3,7 @@ import Home from "@components/home.astro";
 import Navbar from "@components/navbar.astro";
 import { getDirectusContentData } from "@lib/directus";
 import "../styles/global.css";
+import Skills from "./skills.astro";
 
 interface Props {
   locale: string;
@@ -26,13 +27,18 @@ const name =
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
     <title>{name}</title>
   </head>
-  <body class="bg-background mx-auto max-w-7xl px-5 text-white md:px-20">
+  <body class="bg-background mx-auto max-w-480 px-5 text-white md:px-20">
     <Navbar data={content.translations[0]} />
     <Home data={content.translations[0]} />
+    <Skills data={content.translations[0]} locale={locale} />
     <img
-      class="absolute top-0 left-0 -z-10 min-h-svh min-w-svw"
+      class="absolute top-0 left-0 -z-10 min-h-svh min-w-svw opacity-30"
       src="./hero-background.svg"
       alt="Hero Background"
     />
