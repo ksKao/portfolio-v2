@@ -2,12 +2,12 @@
 import { twMerge } from "tailwind-merge";
 import type { JSX } from "astro/jsx-runtime";
 
-type Props = JSX.IntrinsicElements["button"];
+type Props = JSX.IntrinsicElements["a"];
 
 const { class: className, ...restProps } = Astro.props;
 ---
 
-<button
+<a
   {...restProps}
   class={twMerge(
     "border-primary border text-primary rounded-full px-6 py-3",
@@ -15,4 +15,4 @@ const { class: className, ...restProps } = Astro.props;
   )}
 >
   <slot />
-</button>
+</a>

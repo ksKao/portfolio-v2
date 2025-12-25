@@ -1,7 +1,7 @@
 ---
 import type { DirectusContentData } from "@lib/directus";
-import PillButton from "./pill-button.astro";
 import { ensureObject } from "@lib/utils";
+import PillLink from "./pill-link.astro";
 
 interface Props {
   data: NonNullable<DirectusContentData["translations"]>[number];
@@ -21,10 +21,12 @@ const data = ensureObject(Astro.props.data);
     class="font-space text-3xl font-bold md:w-2/3 md:self-start md:text-6xl"
     set:html={data.jumbotron_header_html}
   />
-  <div class="mt-4 md:mt-16 md:w-1/2 md:self-end">
+  <div class="mt-4 flex flex-col md:mt-16 md:w-1/2 md:self-end">
     <p class="text-muted">
       {data.jumbotron_description}
     </p>
-    <PillButton class="mt-6 w-fit self-start">View Projects</PillButton>
+    <PillLink href="#projects" class="mt-6 w-fit self-start">
+      View Projects
+    </PillLink>
   </div>
 </section>
