@@ -10,6 +10,8 @@ export interface Schema {
   skills: Skill[];
   skills_categories: SkillCategory[];
   skills_categories_translations: SkillCategoryTranslation[];
+  work_experience: WorkExperience[];
+  work_experience_translations: WorkExperienceTranslation[];
 }
 
 export interface Content {
@@ -43,6 +45,7 @@ export interface ContentTranslation {
   navbar_projects_text: string;
   navbar_contacts_text: string;
   name: string;
+  present_text: string;
 }
 
 export interface Language {
@@ -94,6 +97,27 @@ export interface SkillCategoryTranslation {
   skills_categories_id: string | SkillCategory | null;
   languages_code: string | Language | null;
   category_title: string;
+}
+
+export interface WorkExperience {
+  id: number;
+  status: "published" | "draft" | "archived";
+  sort: number | null;
+  start_date: string;
+  logo: string | DirectusFile<Schema>;
+  end_date: string | null;
+  translations: number[] | WorkExperienceTranslation[];
+}
+
+export interface WorkExperienceTranslation {
+  id: number;
+  work_experience_id: number | WorkExperience | null;
+  languages_code: string | Language | null;
+  company_name: string;
+  work_description: string;
+  job_title: string;
+  location_1: string;
+  location_2: string;
 }
 
 // GeoJSON Types

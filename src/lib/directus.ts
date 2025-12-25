@@ -59,3 +59,31 @@ export async function getDirectusSkillCategories(locale: string) {
     }),
   }));
 }
+
+export async function getDirectusWorkExperience(locale: string) {
+  const experiences = await directus.request(
+    readItems("work_experience", {
+      fields: ["*", { translations: ["*"] }],
+      deep: {
+        translations: {
+          _limit: 1,
+          _filter: {
+            languages_code: locale,
+          },
+        },
+      },
+    }),
+  );
+
+  return experiences.map((experience) => {
+    if (!experience.translations)
+      throw new Error(
+        `Unable to get ${locale} translations for work experiences.`,
+      );
+
+    return {
+      ...experience,
+      translations: { ...ensureObject(experience.translations[0]) },
+    };
+  });
+}

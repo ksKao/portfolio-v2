@@ -4,6 +4,7 @@ import Navbar from "@components/navbar.astro";
 import { getDirectusContentData } from "@lib/directus";
 import "../styles/global.css";
 import Skills from "./skills.astro";
+import Experience from "./experience.astro";
 
 interface Props {
   locale: string;
@@ -37,6 +38,7 @@ const name =
     <Navbar data={content.translations[0]} />
     <Home data={content.translations[0]} />
     <Skills data={content.translations[0]} locale={locale} />
+    <Experience data={content.translations[0]} locale={locale} />
     <img
       class="absolute top-0 left-0 -z-10 min-h-svh min-w-svw opacity-30"
       src="./hero-background.svg"

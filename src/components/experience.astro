@@ -1,0 +1,69 @@
+---
+import {
+  getDirectusWorkExperience,
+  type DirectusContentData,
+} from "@lib/directus";
+import { ensureObject } from "@lib/utils";
+
+interface Props {
+  data: NonNullable<DirectusContentData["translations"]>[number];
+  locale: string;
+}
+
+const data = ensureObject(Astro.props.data);
+
+const experiences = await getDirectusWorkExperience(Astro.props.locale);
+---
+
+<section
+  id="experience"
+  class="bg-card my-44 flex flex-col justify-center gap-10 rounded-2xl p-6 py-10 md:my-96 md:gap-20 md:p-10 md:py-20"
+>
+  <h2 class="font-space text-center text-4xl font-bold md:text-6xl">
+    {data.work_experience_header}
+  </h2>
+  <div class="flex flex-col gap-10">
+    {
+      experiences.map((experience, i) => (
+        <div class="flex flex-col md:flex-row">
+          <div class="flex w-full flex-col gap-4 md:w-1/2">
+            <div class="flex items-center gap-4">
+              <img
+                src={`${import.meta.env.PUBLIC_DIRECTUS_URL}/assets/${experience.logo}`}
+                alt={experience.translations.company_name + " Logo"}
+                class="h-10 w-10 rounded-md"
+              />
+              <h3 class="font-space text-lg font-semibold md:text-2xl">
+                {experience.translations.company_name}
+              </h3>
+            </div>
+            <div>
+              <p class="text-muted text-sm">
+                {new Date(experience.start_date).toLocaleDateString(Astro.props.locale, {
+                    year: "numeric",
+                    month: "short"
+                })} - {experience.end_date ? new Date(experience.end_date).toLocaleDateString(Astro.props.locale, {
+                    year: "numeric",
+                    month: "short"
+                }) : data.present_text}
+              </p>
+              <p class="text-muted text-sm">
+                {experience.translations.location_1} ·{" "}
+                {experience.translations.location_2}
+              </p>
+            </div>
+          </div>
+          <div class="mt-2 flex w-full flex-col gap-1 md:mt-0 md:w-1/2 md:gap-4">
+            <h3 class="font-space text-lg leading-10 font-semibold md:text-2xl">
+              {experience.translations.job_title}
+            </h3>
+            <p class="text-muted text-sm">
+              {experience.translations.work_description}
+            </p>
+          </div>
+        </div>
+        <hr style={i !== experiences.length - 1 ? "border-top: 1px solid var(--color-muted)" : "display: none"} />
+      ))
+    }
+  </div>
+</section>
