@@ -17,8 +17,10 @@ const experiences = await getDirectusWorkExperience(Astro.props.locale);
 
 <section
   id="experience"
-  class="bg-card my-44 flex flex-col justify-center gap-10 rounded-2xl p-6 py-10 md:my-96 md:gap-20 md:p-10 md:py-20 scroll-m-20"
+  class="min-h-svh flex items-center scroll-m-20 mt-24"
 >
+<div class="bg-card flex flex-col justify-center gap-10 rounded-2xl p-6 py-10 md:gap-20 md:p-10 md:py-20">
+
   <h2 class="font-space text-center text-4xl font-bold md:text-6xl">
     {data.work_experience_header}
   </h2>
@@ -66,4 +68,5 @@ const experiences = await getDirectusWorkExperience(Astro.props.locale);
       ))
     }
   </div>
+</div>
 </section>
