@@ -60,6 +60,9 @@ export interface Project {
   sort: number | null;
   mockup: string | DirectusFile<Schema>;
   name: string;
+  logo: string | DirectusFile<Schema>;
+  project_link: string;
+  github_link: string;
   translations: string[] | ProjectTranslation[];
   skills: string[] | ProjectSkill[];
 }

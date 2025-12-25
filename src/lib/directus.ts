@@ -87,3 +87,37 @@ export async function getDirectusWorkExperience(locale: string) {
     };
   });
 }
+
+export async function getDirectusProjects(locale: string) {
+  const projects = await directus.request(
+    readItems("projects", {
+      fields: ["*", { translations: ["*"], skills: ["*"] }],
+      deep: {
+        translations: {
+          _limit: 1,
+          _filter: {
+            languages_code: locale,
+          },
+        },
+      },
+    }),
+  );
+
+  const skills = await getDirectusSkills();
+
+  return projects.map((project) => {
+    if (!project.translations)
+      throw new Error(`Unable to get ${locale} translations for projects.`);
+    
+    if (!project.skills) 
+      throw new Error(`Unable to get skills for projects.`);
+
+    return {
+      ...project,
+      skills: skills.filter((skill) => !!ensureObject(project.skills!).find(s => ensureObject(s).skills_id === skill.id)),
+      translations: {
+        ...ensureObject(project.translations[0]),
+      },
+    };
+  });
+}
