@@ -12,7 +12,7 @@ const data = ensureObject(Astro.props.data);
 const languages = await getDirectusLanguages();
 ---
 
-<nav class="fixed top-0 left-0 w-full py-6">
+<nav class="bg-background fixed top-0 left-0 z-50 w-full py-6">
   <div class="relative">
     <ul
       class="mx-auto flex w-fit items-center justify-center gap-4 text-xs md:gap-10 md:text-base"
