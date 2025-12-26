@@ -52,6 +52,7 @@ export interface Language {
   code: string;
   name: string | null;
   direction: "ltr" | "rtl" | null;
+  emoji: string;
 }
 
 export interface Project {
@@ -63,8 +64,8 @@ export interface Project {
   logo: string | DirectusFile<Schema>;
   project_link: string;
   github_link: string;
-  translations: string[] | ProjectTranslation[];
   skills: string[] | ProjectSkill[];
+  translations: string[] | ProjectTranslation[];
 }
 
 export interface ProjectSkill {

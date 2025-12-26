@@ -1,0 +1,13 @@
+---
+import App from "@components/app.astro";
+import { getDirectusLanguages } from "@lib/directus";
+
+export async function getStaticPaths() {
+  const languages = await getDirectusLanguages();
+  return languages.map((lang) => ({ params: { locale: lang.code } }));
+}
+
+const { locale } = Astro.params;
+---
+
+<App locale={locale} />

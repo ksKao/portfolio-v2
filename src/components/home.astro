@@ -26,7 +26,7 @@ const data = ensureObject(Astro.props.data);
       {data.jumbotron_description}
     </p>
     <PillLink href="#projects" class="mt-6 w-fit self-start">
-      View Projects
+      {data.jumbotron_cta_text}
     </PillLink>
   </div>
 </section>

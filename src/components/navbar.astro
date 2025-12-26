@@ -1,13 +1,15 @@
 ---
-import type { DirectusContentData } from "@lib/directus";
+import { type DirectusContentData, getDirectusLanguages } from "@lib/directus";
 import { ensureObject } from "@lib/utils";
 import LanguageDropdown from "./language-dropdown";
 
 interface Props {
+  locale: string;
   data: NonNullable<DirectusContentData["translations"]>[number];
 }
 
 const data = ensureObject(Astro.props.data);
+const languages = await getDirectusLanguages();
 ---
 
 <nav class="fixed top-0 left-0 w-full py-6">
@@ -41,6 +43,10 @@ const data = ensureObject(Astro.props.data);
         </a>
       </li>
     </ul>
-    <LanguageDropdown client:load />
+    <LanguageDropdown
+      languages={languages}
+      currentLocale={Astro.props.locale}
+      client:load
+    />
   </div>
 </nav>

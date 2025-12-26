@@ -6,6 +6,10 @@ export const directus = createDirectus<Schema>(
   import.meta.env.PUBLIC_DIRECTUS_URL,
 ).with(rest());
 
+export async function getDirectusLanguages() {
+  return await directus.request(readItems("languages"))
+}
+
 export async function getDirectusContentData(locale: string) {
   return await directus.request(
     readSingleton("content", {
