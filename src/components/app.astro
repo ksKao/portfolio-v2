@@ -3,10 +3,10 @@ import Home from "@components/home.astro";
 import Navbar from "@components/navbar.astro";
 import { getDirectusContentData } from "@lib/directus";
 import "../styles/global.css";
-import Skills from "./skills.astro";
+import Contact from "./contact.astro";
 import Experience from "./experience.astro";
 import Projects from "./projects.astro";
-import Contact from "./contact.astro";
+import Skills from "./skills.astro";
 
 interface Props {
   locale: string;
@@ -47,7 +47,7 @@ const name =
     </main>
     <img
       class="absolute top-0 left-0 -z-10 min-h-svh min-w-svw opacity-30"
-      src="./hero-background.svg"
+      src="/hero-background.svg"
       alt="Hero Background"
     />
     <script src="../scripts/index.ts"></script>
