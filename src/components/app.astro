@@ -36,7 +36,9 @@ const name =
     />
     <title>{name}</title>
   </head>
-  <body class="bg-background mx-auto max-w-480 px-5 text-white md:px-20">
+  <body
+    class="bg-background relative isolate mx-auto max-w-480 px-5 text-white md:px-20"
+  >
     <Navbar data={content.translations[0]} />
     <Home data={content.translations[0]} />
     <Skills data={content.translations[0]} locale={locale} />
