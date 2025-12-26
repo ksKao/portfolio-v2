@@ -36,15 +36,15 @@ const name =
     />
     <title>{name}</title>
   </head>
-  <body
-    class="bg-background relative isolate mx-auto max-w-480 px-5 text-white md:px-20"
-  >
-    <Navbar data={content.translations[0]} locale={locale} />
-    <Home data={content.translations[0]} />
-    <Skills data={content.translations[0]} locale={locale} />
-    <Experience data={content.translations[0]} locale={locale} />
-    <Projects data={content.translations[0]} locale={locale} />
-    <Contact data={content} translation={content.translations[0]} />
+  <body class="bg-background relative isolate text-white">
+    <main class="mx-auto max-w-480 px-5 md:px-20">
+      <Navbar data={content.translations[0]} locale={locale} />
+      <Home data={content.translations[0]} />
+      <Skills data={content.translations[0]} locale={locale} />
+      <Experience data={content.translations[0]} locale={locale} />
+      <Projects data={content.translations[0]} locale={locale} />
+      <Contact data={content} translation={content.translations[0]} />
+    </main>
     <img
       class="absolute top-0 left-0 -z-10 min-h-svh min-w-svw opacity-30"
       src="./hero-background.svg"
