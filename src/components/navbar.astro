@@ -18,27 +18,27 @@ const languages = await getDirectusLanguages();
       class="mx-auto flex w-fit items-center justify-center gap-4 text-xs md:gap-10 md:text-base"
     >
       <li id="nav-link-home">
-        <a href="#home">
+        <a href="#home" data-umami-event="home_navbar_link">
           {data.navbar_home_text}
         </a>
       </li>
       <li id="nav-link-skills">
-        <a href="#skills">
+        <a href="#skills" data-umami-event="skills_navbar_link">
           {data.navbar_skills_text}
         </a>
       </li>
-      <li id="nav-link-experience">
+      <li id="nav-link-experience" data-umami-event="experience_navbar_link">
         <a href="#experience">
           {data.navbar_experience_text}
         </a>
       </li>
       <li id="nav-link-projects">
-        <a href="#projects">
+        <a href="#projects" data-umami-event="projects_navbar_link">
           {data.navbar_projects_text}
         </a>
       </li>
       <li id="nav-link-contacts">
-        <a href="#contacts">
+        <a href="#contacts" data-umami-event="contacts_navbar_link">
           {data.navbar_contacts_text}
         </a>
       </li>

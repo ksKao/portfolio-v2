@@ -23,7 +23,7 @@ const data = Astro.props.data;
     class="flex w-full flex-col gap-6 md:flex-row md:justify-between md:gap-0"
   >
     <div class="flex flex-col gap-4 md:w-1/2">
-      <a href={`mailto:${data.email}`}>
+      <a href={`mailto:${data.email}`} data-umami-event="email_footer_link">
         <div class="flex w-fit items-center gap-2 border-b pb-2">
           <span>
             {data.email}
@@ -45,6 +45,7 @@ const data = Astro.props.data;
           class="bg-primary/10 flex h-14 w-14 items-center justify-center rounded-full"
           target="_blank"
           href={data.linked_in_link}
+          data-umami-event="linkedin_footer_link"
         >
           <svg viewBox="0 0 128 128" width="24px" height="24px">
             <path
@@ -58,6 +59,7 @@ const data = Astro.props.data;
           class="bg-primary/10 flex h-14 w-14 items-center justify-center rounded-full"
           target="_blank"
           href={data.github_link}
+          data-umami-event="github_footer_link"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -77,6 +79,7 @@ const data = Astro.props.data;
           class="bg-primary/10 flex h-14 w-14 items-center justify-center rounded-full"
           target="_blank"
           href={data.discord_link}
+          data-umami-event="discord_footer_link"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -105,6 +108,7 @@ const data = Astro.props.data;
         href={`${import.meta.env.PUBLIC_DIRECTUS_URL}/assets/${translation.cv.toString()}`}
         class="w-fit"
         target="_blank"
+        data-umami-event="download_cv_footer_link"
       >
         {translation.download_cv_button_text}
       </PillLink>

@@ -31,7 +31,10 @@ export default function LanguageDropdown({
         value: lang.code,
       }))}
     >
-      <Select.Trigger className="absolute top-1/2 right-4 -translate-y-1/2 cursor-pointer text-xs md:text-base">
+      <Select.Trigger
+        className="absolute top-1/2 right-4 -translate-y-1/2 cursor-pointer text-xs md:text-base"
+        data-umami-event="language_dropdown"
+      >
         <Select.Value className="text-lg">
           {languages.find((l) => l.code === currentLocale)?.emoji}
         </Select.Value>

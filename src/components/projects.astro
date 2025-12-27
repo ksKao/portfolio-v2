@@ -53,6 +53,7 @@ const projects = await getDirectusProjects(Astro.props.locale);
                   class="flex h-fit w-fit items-center gap-2 px-4 py-2 text-sm"
                   href={project.project_link}
                   target="_blank"
+                  data-umami-event={`${project.name.replaceAll(" ", "_").toLocaleLowerCase().trim()}_project_link`}
                 >
                   <span>{data.link_to_project_text}</span>
                   <svg
@@ -69,6 +70,7 @@ const projects = await getDirectusProjects(Astro.props.locale);
                   class="flex h-fit w-fit items-center gap-2 px-4 py-2 text-sm"
                   href={project.github_link}
                   target="_blank"
+                  data-umami-event={`${project.name.replaceAll(" ", "_").toLocaleLowerCase().trim()}_github_link`}
                 >
                   <span>{data.link_to_source_code_text}</span>
                   <svg viewBox="0 0 128 128" width="16px" height="16px">
